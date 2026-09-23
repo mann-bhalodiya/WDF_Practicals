@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal | Admin Login</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html" class="logo">EduPortal.</a>
+
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="attendance.html">Attendance</a></li>
+          <li><a href="timetable.html">Timetable</a></li>
+          <li><a href="materials.html">Materials</a></li>
+          <li><a href="notices.html">Notices</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="settings.html">Settings</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin-login.html">Admin</a></li>
+          <li><a href="login.html" class="btn-login">Login</a></li>
+          <li><a href="register.html" class="btn-login">Register</a></li>
+
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="form-container">
+        <h2 style="margin-bottom: 0.5rem; text-align: center">
+          Faculty & Admin Login
+        </h2>
+        <p
+          style="
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+          "
+        >
+          Administrative control panel access
+        </p>
+
+        <form id="adminLoginForm" action="index.html" method="GET" novalidate>
+          <div class="form-group">
+            <label for="admin-id">Faculty Email / ID</label>
+            <input
+              type="text"
+              id="admin-id"
+              name="admin-id"
+              placeholder="prof.smith@college.edu"
+              required
+            />
+            <small class="error-message" id="adminIdError"></small>
+          </div>
+          <div class="form-group">
+            <label for="admin-key">Security Key</label>
+            <input
+              type="password"
+              id="admin-key"
+              name="admin-key"
+              placeholder="••••••••"
+              required
+            />
+            <small class="error-message" id="adminKeyError"></small>
+          </div>
+          <button type="submit" class="btn" style="background-color: #0f172a">
+            Access Admin Suite
+          </button>
+        </form>
+      </div>
+      <script src="javascript/script.js"></script>
+    </main>
+  </body>
+</html>

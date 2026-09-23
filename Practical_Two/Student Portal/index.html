@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal | Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html" class="logo">EduPortal.</a>
+
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="attendance.html">Attendance</a></li>
+          <li><a href="timetable.html">Timetable</a></li>
+          <li><a href="materials.html">Materials</a></li>
+          <li><a href="notices.html">Notices</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="settings.html">Settings</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin-login.html">Admin</a></li>
+          <li><a href="login.html" class="btn-login">Login</a></li>
+          <li><a href="register.html" class="btn-login">Register</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="dashboard-main">
+      <section class="dashboard-hero">
+        <div class="hero-copy">
+          <span class="eyebrow">STUDENT WORKSPACE / 2026</span>
+          <h1>Build your next<br><em>big idea.</em></h1>
+          <p>Your academic command centre for progress, resources, schedules, and the moments that make campus yours.</p>
+          <div class="hero-meta"><span class="hero-clock" id="hero-clock">Loading local time...</span><span class="hero-divider"></span><span>Monday · Week 04</span></div>
+          <div class="hero-actions">
+            <a href="attendance.html" class="btn hero-primary">View progress <span>↗</span></a>
+            <a href="materials.html" class="text-action">Open study library <span>→</span></a>
+          </div>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-ring ring-one"></div>
+          <div class="orbit-ring ring-two"></div>
+          <div class="orbit-core"><span>MB</span><small>4th<br>semester</small></div>
+          <span class="orbit-dot dot-one"></span>
+          <span class="orbit-dot dot-two"></span>
+        </div>
+      </section>
+
+      <section class="dashboard-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">AT A GLANCE</span>
+            <h2>Your semester, in focus.</h2>
+          </div>
+          <span class="live-status"><i></i> All systems on track</span>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-card metric-featured">
+            <div class="metric-top"><span>Overall attendance</span><span class="metric-icon">◒</span></div>
+            <strong>88<span>%</span></strong>
+            <div class="progress-line"><i style="width: 88%"></i></div>
+            <p>+4.2% from last month · Good standing</p>
+          </article>
+          <article class="metric-card">
+            <div class="metric-top"><span>Current semester</span><span class="metric-icon">⌁</span></div>
+            <strong>04<small> / 08</small></strong>
+            <p>Computer Science Engineering</p>
+          </article>
+          <article class="metric-card metric-alert">
+            <div class="metric-top"><span>Pending work</span><span class="metric-icon">!</span></div>
+            <strong>02</strong>
+            <p>Web Development practicals due soon</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="dashboard-section dashboard-columns">
+        <div>
+          <div class="section-heading compact">
+            <div>
+              <span class="eyebrow">YOUR SHORTCUTS</span>
+              <h2>Make it happen.</h2>
+            </div>
+          </div>
+          <div class="action-grid">
+            <a href="materials.html" class="action-card action-purple"><span class="action-symbol">▱</span><strong>Study library</strong><small>Notes & resources</small><b>↗</b></a>
+            <a href="timetable.html" class="action-card action-cyan"><span class="action-symbol">◫</span><strong>My timetable</strong><small>See what’s next</small><b>↗</b></a>
+            <a href="notices.html" class="action-card action-orange"><span class="action-symbol">✦</span><strong>Notice board</strong><small>Latest updates</small><b>↗</b></a>
+            <a href="profile.html" class="action-card action-pink"><span class="action-symbol">◎</span><strong>My profile</strong><small>Personal records</small><b>↗</b></a>
+          </div>
+        </div>
+        <aside class="spotlight-card">
+          <span class="eyebrow">UP NEXT</span>
+          <div class="spotlight-date"><strong>24</strong><span>JUL<br>2026</span></div>
+          <h3>Web Development Frameworks</h3>
+          <p>Practical assignment 01 · Lab 3 · 10:00 AM</p>
+          <a href="notices.html">See all notices <span>→</span></a>
+        </aside>
+      </section>
+
+      <section class="dashboard-section insight-grid">
+        <article class="insight-card analytics-card">
+          <div class="section-heading compact">
+            <div><span class="eyebrow">PERFORMANCE PULSE</span><h2>Subject health</h2></div>
+            <a href="attendance.html" class="mini-link">Full report →</a>
+          </div>
+          <div class="subject-row"><div class="subject-label"><span>Web Development</span><b>93%</b></div><div class="subject-bar"><i style="width: 93%"></i></div></div>
+          <div class="subject-row"><div class="subject-label"><span>Database Systems</span><b>85%</b></div><div class="subject-bar"><i style="width: 85%"></i></div></div>
+          <div class="subject-row"><div class="subject-label"><span>Computer Networks</span><b class="warning-text">68%</b></div><div class="subject-bar warning"><i style="width: 68%"></i></div></div>
+          <div class="insight-footer"><span>Target attendance</span><strong>75%</strong><span class="success-text">+13% above target</span></div>
+        </article>
+        <article class="insight-card timeline-card">
+          <div class="section-heading compact"><div><span class="eyebrow">ACTIVITY FEED</span><h2>Recent movement</h2></div></div>
+          <div class="timeline-item"><span class="timeline-dot done"></span><div><strong>Attendance updated</strong><small>Today · 09:42 AM</small></div><b>+2%</b></div>
+          <div class="timeline-item"><span class="timeline-dot purple"></span><div><strong>New material uploaded</strong><small>Yesterday · DBMS Unit 3</small></div><b>PDF</b></div>
+          <div class="timeline-item"><span class="timeline-dot orange"></span><div><strong>Assignment deadline moved</strong><small>July 20 · WDF Practical 01</small></div><b>New</b></div>
+        </article>
+      </section>
+
+      <section class="dashboard-section memory-section">
+        <div class="section-heading">
+          <div><span class="eyebrow">CAMPUS JOURNAL</span><h2>Little moments, big memories.</h2></div>
+          <span class="muted-note">Swipe through your world</span>
+        </div>
+        <div class="slider">
+          <button class="prev">&#10094;</button>
+
+          <div class="slides">
+            <img
+              src="https://www.charusat.ac.in/_next/static/media/04.5ddb2558.png"
+              class="slide active"
+              alt="Students and campus life"
+            />
+
+            <img
+              src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000"
+              class="slide"
+              alt="University campus building"
+            />
+
+            <img
+              src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1000"
+              class="slide"
+              alt="Students participating in campus sports"
+            />
+
+            <img
+              src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1000"
+              class="slide"
+              alt="Students studying in the library"
+            />
+
+            <img
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000"
+              class="slide"
+              alt="Students working out at the campus gym"
+            />
+          </div>
+
+          <button class="next">&#10095;</button>
+        </div>
+      </section>
+      <script src="javascript/script.js"></script>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Attendance</title>
+    <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+    <header>
+        <nav>
+    <a href="index.html" class="logo">EduPortal.</a>
+
+    <button class="menu-toggle" id="menu-toggle">
+        ☰
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="timetable.html">Timetable</a></li>
+        <li><a href="materials.html">Materials</a></li>
+        <li><a href="notices.html">Notices</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin-login.html">Admin</a></li>
+        <li><a href="login.html" class="btn-login">Login</a></li>
+        <li><a href="register.html" class="btn-login">Register</a></li>
+
+    </ul>
+</nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+        <h1>Subject Attendance</h1>
+        <p>Detailed tracking of lectures attended this semester.</p>
+        </section>
+
+        <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Lectures Conducted</th>
+                <th>Lectures Attended</th>
+                <th>Percentage</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>CS401</td>
+                <td>Web Development Frameworks</td>
+                <td>30</td>
+                <td>28</td>
+                <td>93%</td>
+                <td><span class="badge badge-success">Sufficient</span></td>
+            </tr>
+            <tr>
+                <td>CS402</td>
+                <td>Database Management Systems</td>
+                <td>28</td>
+                <td>24</td>
+                <td>85%</td>
+                <td><span class="badge badge-success">Sufficient</span></td>
+            </tr>
+            <tr>
+                <td>CS403</td>
+                <td>Computer Networks</td>
+                <td>32</td>
+                <td>22</td>
+                <td>68%</td>
+                <td><span class="badge badge-danger">Low Attendance</span></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    <script src="javascript/script.js"></script>
+
+    </main>
+
+    </body>
+    </html>

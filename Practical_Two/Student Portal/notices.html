@@ -1,0 +1,133 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Student Portal | Notices</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+
+    <!-- Notice 1 -->
+    <div id="notice1" class="modal">
+        <div class="modal-content">
+        <span class="close" onclick="closeModal('notice1')">&times;</span>
+
+        <h2 style="color:var(--accent)">Mid-Semester Exam Schedule Released</h2>
+
+        <p><strong>Posted:</strong> July 20, 2026</p>
+
+        <hr />
+
+        <p>
+            The Computer Science Department has officially released the Mid-Semester
+            Examination Schedule.
+        </p>
+
+        <p>
+            Exams will begin from <strong>August 18, 2026</strong>. Students are
+            advised to check their seating arrangements and examination rooms
+            through the student portal.
+        </p>
+
+        <p>
+            Carry your college ID card and report 30 minutes before the examination
+            begins.
+        </p>
+        </div>
+    </div>
+
+    <!-- Notice 2 -->
+    <div id="notice2" class="modal">
+        <div class="modal-content">
+        <span class="close" onclick="closeModal('notice2')">&times;</span>
+
+        <h2 style="color: var(--accent);">WDF Submission Deadline Extended</h2>
+
+        <p><strong>Posted:</strong> July 15, 2026</p>
+
+        <hr />
+
+        <p>
+            The submission deadline for Web Development Fundamentals Practical
+            Assignment #1 has been extended.
+        </p>
+
+        <p>
+            New Deadline:
+            <strong>July 23, 2026 (11:59 PM)</strong>
+        </p>
+
+        <p>
+            Students who fail to submit before the deadline will receive late
+            submission penalties.
+        </p>
+        </div>
+    </div>
+    <body>
+        <header>
+        <nav>
+    <a href="index.html" class="logo">EduPortal.</a>
+    
+    <button class="menu-toggle" id="menu-toggle">
+        ☰
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="timetable.html">Timetable</a></li>
+        <li><a href="materials.html">Materials</a></li>
+        <li><a href="notices.html">Notices</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin-login.html">Admin</a></li>
+        <li><a href="login.html" class="btn-login">Login</a></li>
+        <li><a href="register.html" class="btn-login">Register</a></li>
+
+    </ul>
+</nav>
+        </header>
+
+        <main>
+        <section class="page-header">
+            <h1>Notice Board</h1>
+            <p>Official announcements from the department and faculty.</p>
+        </section>
+
+        <div class="grid" style="gap: 1rem;">
+
+        <article class="card" onclick="openModal('notice1')" style="cursor:pointer;">
+            <span style="font-size:0.8rem;color:var(--text-muted);">
+                Posted on: July 20, 2026
+            </span>
+
+            <h3 style="margin:0.25rem 0;">
+                Mid-Semester Exam Schedule Released
+            </h3>
+
+            <p>
+                The mid-semester examinations will commence from next month.
+                Check the official portal for room allocations.
+            </p>
+        </article>
+
+        <article class="card" onclick="openModal('notice2')" style="cursor:pointer;">
+            <span style="font-size:0.8rem;color:var(--text-muted);">
+                Posted on: July 15, 2026
+            </span>
+
+            <h3 style="margin:0.25rem 0;">
+                WDF Submission Deadline Extended
+            </h3>
+
+            <p>
+                Practical assignment #1 submission date has been extended by
+                three days.
+            </p>
+        </article>
+    </div>
+    <script src="javascript/script.js"></script>
+        </main>
+    </body>
+    </html>
