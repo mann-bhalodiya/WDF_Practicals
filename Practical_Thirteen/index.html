@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudentHub - AJAX CRUD (Practical 13)</title>
+  <style>
+    :root {
+      --bg: #f4f6fb; --card: #ffffff; --text: #1f2937; --muted: #6b7280;
+      --primary: #2563eb; --primary-dark: #1d4ed8;
+      --danger: #dc2626; --success: #16a34a; --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+           background: var(--bg); color: var(--text); }
+    header { background: var(--primary); color: #fff; padding: 1rem 1.5rem; }
+    header h1 { margin: 0; font-size: 1.4rem; }
+    header p { margin: .2rem 0 0; font-size: .9rem; opacity: .9; }
+    main { max-width: 1000px; margin: 1.5rem auto; padding: 0 1rem; }
+
+    .toolbar { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
+    .toolbar input[type="search"] { flex: 1 1 220px; }
+    input, select, button { font: inherit; }
+    input, select { padding: .55rem .7rem; border: 1px solid var(--border); border-radius: 6px;
+                    background: #fff; width: 100%; }
+    .toolbar select { width: auto; }
+    input:focus, select:focus, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+    button { padding: .55rem 1rem; border: 0; border-radius: 6px; cursor: pointer;
+             background: var(--primary); color: #fff; }
+    button:hover { background: var(--primary-dark); }
+    button:disabled { opacity: .6; cursor: not-allowed; }
+    button.secondary { background: #e5e7eb; color: var(--text); }
+    button.secondary:hover { background: #d1d5db; }
+    button.danger { background: var(--danger); }
+    button.danger:hover { background: #b91c1c; }
+    button.small { padding: .3rem .65rem; font-size: .85rem; }
+
+    .card { background: var(--card); border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.08); overflow: hidden; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 640px; }
+    th, td { padding: .7rem .9rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: #f9fafb; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); }
+    td.actions { white-space: nowrap; display: flex; gap: .4rem; }
+    .state-cell { text-align: center; color: var(--muted); padding: 2rem 1rem; }
+
+    .spinner { display: inline-block; width: 1.1rem; height: 1.1rem; margin-right: .5rem; vertical-align: -3px;
+               border: 3px solid #cbd5e1; border-top-color: var(--primary); border-radius: 50%;
+               animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .banner { padding: .8rem 1rem; border-radius: 8px; margin-bottom: 1rem; display: flex;
+              justify-content: space-between; align-items: center; gap: 1rem; }
+    .banner.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .banner[hidden] { display: none; }
+
+    .toast { position: fixed; right: 1rem; bottom: 1rem; padding: .8rem 1.1rem; border-radius: 8px;
+             color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.2); opacity: 0; transform: translateY(10px);
+             transition: all .25s; pointer-events: none; max-width: 320px; }
+    .toast.show { opacity: 1; transform: none; }
+    .toast.success { background: var(--success); }
+    .toast.error { background: var(--danger); }
+
+    dialog { border: 0; border-radius: 12px; padding: 0; width: min(440px, 92vw);
+             box-shadow: 0 10px 40px rgba(0,0,0,.3); }
+    dialog::backdrop { background: rgba(15, 23, 42, .5); }
+    .dialog-body { padding: 1.4rem; }
+    .dialog-body h2 { margin: 0 0 1rem; font-size: 1.2rem; }
+    .field { margin-bottom: .9rem; }
+    .field label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .25rem; }
+    .field .error-msg { color: var(--danger); font-size: .8rem; min-height: 1em; margin-top: .2rem; }
+    .field input.invalid, .field select.invalid { border-color: var(--danger); }
+    .row { display: flex; gap: .75rem; }
+    .row .field { flex: 1; }
+    .dialog-actions { display: flex; justify-content: flex-end; gap: .6rem; margin-top: 1rem; }
+    .form-error { color: var(--danger); font-size: .9rem; margin-bottom: .5rem; }
+    .count { color: var(--muted); font-size: .85rem; margin: 0 0 .5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>StudentHub - Student Management</h1>
+    <p>PHP JSON API + Fetch API CRUD (no page reload)</p>
+  </header>
+
+  <main>
+    <section class="toolbar" aria-label="Search and filter">
+      <input type="search" id="searchInput" placeholder="Search by name, email or mobile..." aria-label="Search students">
+      <select id="courseFilter" aria-label="Filter by course">
+        <option value="">All courses</option>
+        <option value="CSE">CSE</option>
+        <option value="IT">IT</option>
+        <option value="CE">CE</option>
+        <option value="EC">EC</option>
+        <option value="ME">ME</option>
+      </select>
+      <button type="button" id="addBtn">+ Add Student</button>
+    </section>
+
+    <div id="errorBanner" class="banner error" role="alert" hidden>
+      <span id="errorText"></span>
+      <button type="button" class="small" id="retryBtn">Retry</button>
+    </div>
+
+    <p class="count" id="countText" aria-live="polite"></p>
+
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Name</th><th>Email</th><th>Mobile</th><th>Course</th><th>Year</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <dialog id="formDialog" aria-labelledby="formTitle">
+    <form id="studentForm" novalidate>
+      <div class="dialog-body">
+        <h2 id="formTitle">Add Student</h2>
+        <div class="form-error" id="formError" role="alert"></div>
+        <input type="hidden" id="studentId">
+
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" maxlength="60" autocomplete="off">
+          <div class="error-msg" data-error-for="name"></div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" maxlength="100" autocomplete="off">
+          <div class="error-msg" data-error-for="email"></div>
+        </div>
+
+        <div class="field">
+          <label for="mobile">Mobile</label>
+          <input type="tel" id="mobile" name="mobile" maxlength="10" inputmode="numeric" autocomplete="off">
+          <div class="error-msg" data-error-for="mobile"></div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="course">Course</label>
+            <select id="course" name="course">
+              <option value="">Select</option>
+              <option value="CSE">CSE</option>
+              <option value="IT">IT</option>
+              <option value="CE">CE</option>
+              <option value="EC">EC</option>
+              <option value="ME">ME</option>
+            </select>
+            <div class="error-msg" data-error-for="course"></div>
+          </div>
+          <div class="field">
+            <label for="year">Year</label>
+            <select id="year" name="year">
+              <option value="">Select</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            <div class="error-msg" data-error-for="year"></div>
+          </div>
+        </div>
+
+        <div class="dialog-actions">
+          <button type="button" class="secondary" id="cancelBtn">Cancel</button>
+          <button type="submit" id="saveBtn">Save</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  
+  <dialog id="deleteDialog" aria-labelledby="deleteTitle">
+    <div class="dialog-body">
+      <h2 id="deleteTitle">Delete student?</h2>
+      <p>Are you sure you want to delete <strong id="deleteName"></strong>? This cannot be undone.</p>
+      <div class="dialog-actions">
+        <button type="button" class="secondary" id="cancelDeleteBtn">Cancel</button>
+        <button type="button" class="danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
